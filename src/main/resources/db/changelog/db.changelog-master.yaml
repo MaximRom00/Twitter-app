@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: changesets/changelog-init.sql
+      relativeToChangelogFile: true
+  - include:
+      file: changesets/changelog-insert.sql
+      relativeToChangelogFile: true
