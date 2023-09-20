@@ -26,4 +26,12 @@ create table accounts_roles
 );
 
 
-# insert into roles(authority) value ('ROLE_ADMIN'), ('ROLE_USER');
+create table tweets
+(
+    id       int not null auto_increment ,
+    message varchar(255) not null ,
+    user_id int not null ,
+    created_timestamp timestamp not null ,
+    PRIMARY KEY (`id`),
+    constraint tweets_user_account_fk foreign key (user_id) references user_accounts(id)
+);
