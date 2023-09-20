@@ -15,6 +15,8 @@ public class ValidationMessageConstant {
 
     public static final String SAVE_ROLE = "Save role in db: {}";
 
+    public static final String CREATE_NEW_TWEET = "Create new tweet: {}";
+
     public static final String MAP_USER_TO_JWTENTITY = "Map user to jwtEntity, {}";
 
     public static final String MAP_ROLEDTO_TO_ROLE = "Map roleDto to role: {}";
@@ -24,6 +26,10 @@ public class ValidationMessageConstant {
     public static final String MAP_USERDTO_TO_USER = "Map userDto to User: {}";
 
     public static final String MAP_USER_TO_USERDTO = "Map user to userDto: {}";
+
+    public static final String MAP_TWEETREQUEST_TO_TWEET = "Map tweetRequest to tweet: {}";
+
+    public static final String MAP_TWEET_TO_TWEETRESPONSE = "Map tweet to tweet: {}";
 
     public static final String REFRESH_TOKEN = "Refresh toke: {}";
 
