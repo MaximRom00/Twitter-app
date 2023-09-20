@@ -19,15 +19,8 @@ import static by.rom.xapp.dto.validation.ValidationMessageConstant.*;
 public class UserController {
 
     private final UserService userService;
+
     private final UserMapperImpl mapper;
-
-    @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void registerUser(@Valid @RequestBody UserDto userRequestDto){
-        log.info(REGISTER_REQUEST_FROM_USER, userRequestDto);
-
-        userService.saveUser(userRequestDto);
-    }
 
     @GetMapping("/{id}")
     public UserDto getUserById(@PathVariable Long id){

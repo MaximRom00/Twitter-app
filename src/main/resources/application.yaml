@@ -4,6 +4,9 @@ spring:
     username: root
     password: '12345'
     driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate.jdbc.time.zone: UTC
 security:
   jwt:
     secret: ${SECRET}
