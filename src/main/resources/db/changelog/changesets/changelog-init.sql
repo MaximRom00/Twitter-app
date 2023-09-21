@@ -6,6 +6,7 @@ create table user_accounts
     id       int not null auto_increment,
     username varchar(255) not null unique,
     password varchar(255) not null,
+    image_link varchar(255),
     email    varchar(255) not null unique,
     PRIMARY KEY (`id`)
 );
@@ -32,6 +33,9 @@ create table tweets
     message varchar(255) not null ,
     user_id int not null ,
     created_timestamp timestamp not null ,
+    updated_timestamp timestamp not null ,
     PRIMARY KEY (`id`),
     constraint tweets_user_account_fk foreign key (user_id) references user_accounts(id)
 );
+
+update tweets set updated_timestamp = created_timestamp where updated_timestamp IS NULL;
