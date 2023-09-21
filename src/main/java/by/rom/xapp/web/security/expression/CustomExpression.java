@@ -1,7 +1,10 @@
 package by.rom.xapp.web.security.expression;
 
 
+import by.rom.xapp.domain.Tweet;
 import by.rom.xapp.domain.user.RoleType;
+import by.rom.xapp.service.TweetService;
+import by.rom.xapp.web.security.JwtEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,10 +17,20 @@ import static by.rom.xapp.domain.user.RoleType.*;
 @RequiredArgsConstructor
 public class CustomExpression {
 
-    public boolean canAccess(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    private final TweetService tweetService;
+
+    public boolean canAccessByRole(){
+        Authentication authentication = getAuthentication();
 
         return hasAnyRole(authentication, ROLE_ADMIN);
+    }
+
+    public boolean canAccessByUser(Long id){
+        JwtEntity authUser = (JwtEntity) getAuthentication().getPrincipal();
+
+        Tweet tweet = tweetService.findTweetById(id);
+
+        return authUser.getId().equals(tweet.getUser().getId());
     }
 
     private boolean hasAnyRole(Authentication authentication, RoleType... roles) {
@@ -28,5 +41,9 @@ public class CustomExpression {
             }
         }
         return false;
+    }
+
+    private Authentication getAuthentication() {
+        return SecurityContextHolder.getContext().getAuthentication();
     }
 }

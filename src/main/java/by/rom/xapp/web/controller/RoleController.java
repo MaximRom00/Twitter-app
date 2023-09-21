@@ -19,13 +19,13 @@ public class RoleController {
     private final RoleService roleService;
 
     @GetMapping
-    @PreAuthorize("@customExpression.canAccess()")
+    @PreAuthorize("@customExpression.canAccessByRole()")
     public List<RoleDto> getAllRoles(){
         return roleService.findAll();
     }
 
     @PostMapping("/create")
-    @PreAuthorize("@customExpression.canAccess()")
+    @PreAuthorize("@customExpression.canAccessByRole()")
     @ResponseStatus(HttpStatus.CREATED)
     public RoleDto createRole(@RequestBody RoleDto roleDto){
         return roleService.save(roleDto);
