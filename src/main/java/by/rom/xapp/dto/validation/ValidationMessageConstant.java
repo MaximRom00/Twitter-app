@@ -17,6 +17,8 @@ public class ValidationMessageConstant {
 
     public static final String CREATE_NEW_TWEET = "Create new tweet: {}";
 
+    public static final String EDIT_TWEET = "Edit tweet: {}";
+
     public static final String MAP_USER_TO_JWTENTITY = "Map user to jwtEntity, {}";
 
     public static final String MAP_ROLEDTO_TO_ROLE = "Map roleDto to role: {}";

@@ -36,7 +36,8 @@ public class TweetMapperImpl {
 
         return new TweetResponse(tweet.getId(),
                 tweet.getMessage(),
-                tweet.getCreatedTimestamp());
+                tweet.getCreatedTimestamp(),
+                tweet.getUpdatedTimestamp());
     }
 
     private User getAuthenticatedUser(){

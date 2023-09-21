@@ -7,9 +7,11 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import static by.rom.xapp.dto.validation.ValidationMessageConstant.CREATE_NEW_TWEET;
+import static by.rom.xapp.dto.validation.ValidationMessageConstant.EDIT_TWEET;
 
 @RestController
 @RequestMapping(("/api/v1/tweets"))
@@ -25,5 +27,13 @@ public class TweetController {
         log.info(CREATE_NEW_TWEET, tweetRequest);
 
         return tweetService.saveTweet(tweetRequest);
+    }
+
+    @PutMapping
+    @PreAuthorize("@customExpression.canAccessByUser(#tweetRequest.id())")
+    public TweetResponse updateTweet(@Valid @RequestBody TweetRequest tweetRequest){
+        log.info(EDIT_TWEET, tweetRequest);
+
+        return tweetService.updateTweet(tweetRequest);
     }
 }

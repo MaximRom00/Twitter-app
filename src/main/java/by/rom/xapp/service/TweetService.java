@@ -6,4 +6,8 @@ import by.rom.xapp.dto.tweet.TweetResponse;
 
 public interface TweetService {
     TweetResponse saveTweet(TweetRequest tweetRequest);
+
+    TweetResponse updateTweet(TweetRequest tweetRequest);
+
+    Tweet findTweetById(Long id);
 }
