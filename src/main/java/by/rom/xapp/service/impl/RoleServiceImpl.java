@@ -45,6 +45,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional
     public RoleDto save(RoleDto roleDto) {
 
         log.info(SAVE_ROLE, roleDto);
