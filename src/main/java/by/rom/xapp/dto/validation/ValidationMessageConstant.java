@@ -19,6 +19,12 @@ public class ValidationMessageConstant {
 
     public static final String EDIT_TWEET = "Edit tweet: {}";
 
+    public static final String GET_TWEET = "Get tweet by id: {}";
+
+    public static final String GET_ALL_USER_TWEETS = "Get all tweets";
+
+    public static final String DELETE_TWEET = "Delete tweet by id: {}";
+
     public static final String MAP_USER_TO_JWTENTITY = "Map user to jwtEntity, {}";
 
     public static final String MAP_ROLEDTO_TO_ROLE = "Map roleDto to role: {}";
