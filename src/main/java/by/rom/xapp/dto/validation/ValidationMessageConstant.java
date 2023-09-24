@@ -25,6 +25,10 @@ public class ValidationMessageConstant {
 
     public static final String DELETE_TWEET = "Delete tweet by id: {}";
 
+    public static final String SUBSCRIBE_TO = "Subscribe to: {}";
+
+    public static final String UNSUBSCRIBE_TO = "Unsubscribe to: {}";
+
     public static final String MAP_USER_TO_JWTENTITY = "Map user to jwtEntity, {}";
 
     public static final String MAP_ROLEDTO_TO_ROLE = "Map roleDto to role: {}";
@@ -38,6 +42,10 @@ public class ValidationMessageConstant {
     public static final String MAP_TWEETREQUEST_TO_TWEET = "Map tweetRequest to tweet: {}";
 
     public static final String MAP_TWEET_TO_TWEETRESPONSE = "Map tweet to tweet: {}";
+
+    public static final String MAP_SUBSCRIBEREQUEST_TO_SUBSCRIPTION = "Map unsubscribeRequest to subscription: {}";
+
+    public static final String MAP_UNSUBSCRIBEREQUEST_TO_SUBSCRIPTION = "Map unsubscribeRequest to subscription: {}";
 
     public static final String REFRESH_TOKEN = "Refresh toke: {}";
 
