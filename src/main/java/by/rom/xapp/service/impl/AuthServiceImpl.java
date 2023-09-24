@@ -5,6 +5,7 @@ import by.rom.xapp.dto.auth.JwtRequest;
 import by.rom.xapp.dto.auth.JwtResponse;
 import by.rom.xapp.service.AuthService;
 import by.rom.xapp.service.UserService;
+import by.rom.xapp.web.security.JwtEntity;
 import by.rom.xapp.web.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,6 +39,15 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public JwtResponse refresh(String refreshToken) {
         return jwtTokenProvider.refreshUserTokens(refreshToken);
+    }
+
+    @Override
+    public User getAuthenticatedUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        JwtEntity jwtEntity = (JwtEntity) authentication.getPrincipal();
+
+        return userService.findUserByUserName(jwtEntity.getName());
     }
 
     @Override

@@ -5,7 +5,8 @@ import by.rom.xapp.dto.tweet.PageSettings;
 import by.rom.xapp.dto.tweet.TweetRequest;
 import by.rom.xapp.dto.tweet.TweetResponse;
 import by.rom.xapp.exception.NotFoundException;
-import by.rom.xapp.mapper.impl.TweetMapperImpl;
+import by.rom.xapp.mapper.impl.tweet.TwitterRequestMapperImpl;
+import by.rom.xapp.mapper.impl.tweet.TwitterResponseMapperImpl;
 import by.rom.xapp.repository.TweetRepository;
 import by.rom.xapp.service.AuthService;
 import by.rom.xapp.service.TweetService;
@@ -25,18 +26,20 @@ public class TweetServiceImpl implements TweetService {
 
     private final TweetRepository tweetRepository;
 
-    private final TweetMapperImpl tweetMapper;
+    private final TwitterRequestMapperImpl twitterRequestMapper;
+
+    private final TwitterResponseMapperImpl twitterResponseMapper;
 
     private final AuthService authService;
 
     @Override
     @Transactional
     public TweetResponse saveTweet(TweetRequest tweetRequest) {
-        Tweet tweet = tweetMapper.toEntity(tweetRequest);
+        Tweet tweet = twitterRequestMapper.requestToEntity(tweetRequest);
 
         Tweet createdTweet = tweetRepository.save(tweet);
 
-        return tweetMapper.toDto(createdTweet);
+        return twitterResponseMapper.entityToResponse(createdTweet);
     }
 
     @Override
@@ -45,7 +48,7 @@ public class TweetServiceImpl implements TweetService {
 
         return tweetRepository.findById(tweetRequest.id())
                 .map(tweetDB -> {
-                    Tweet tweet = tweetMapper.toEntity(tweetRequest);
+                    Tweet tweet = twitterRequestMapper.requestToEntity(tweetRequest);
 
                     tweet.setId(tweetRequest.id());
                     tweet.setCreatedTimestamp(tweetDB.getCreatedTimestamp());
@@ -55,7 +58,7 @@ public class TweetServiceImpl implements TweetService {
                     return tweet;
                 })
                 .map(tweetRepository::save)
-                .map(tweetMapper::toDto)
+                .map(twitterResponseMapper::entityToResponse)
                 .orElseThrow(() -> new NotFoundException("Tweet not found with id: " + tweetRequest.id()));
     }
 
@@ -71,7 +74,7 @@ public class TweetServiceImpl implements TweetService {
 
         return tweetRepository.findAllByUser_Id(userId, pageable)
                 .stream()
-                .map(tweetMapper::toDto)
+                .map(twitterResponseMapper::entityToResponse)
                 .collect(Collectors.toList());
     }
 

@@ -3,7 +3,7 @@ package by.rom.xapp.web.controller;
 import by.rom.xapp.dto.tweet.PageSettings;
 import by.rom.xapp.dto.tweet.TweetRequest;
 import by.rom.xapp.dto.tweet.TweetResponse;
-import by.rom.xapp.mapper.impl.TweetMapperImpl;
+import by.rom.xapp.mapper.impl.tweet.TwitterResponseMapperImpl;
 import by.rom.xapp.service.TweetService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class TweetController {
 
     private final TweetService tweetService;
 
-    private final TweetMapperImpl tweetMapper;
+    private final TwitterResponseMapperImpl twitterResponseMapper;
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
@@ -65,6 +65,6 @@ public class TweetController {
     public TweetResponse getTweet(@PathVariable Long id){
         log.info(GET_TWEET, id);
 
-        return tweetMapper.toDto(tweetService.findTweetById(id));
+        return twitterResponseMapper.entityToResponse(tweetService.findTweetById(id));
     }
 }
