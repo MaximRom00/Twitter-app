@@ -13,10 +13,6 @@ import lombok.*;
 @AllArgsConstructor
 public class Role extends BaseEntity<Long> {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Enumerated(EnumType.STRING)
     private RoleType authority;
 
