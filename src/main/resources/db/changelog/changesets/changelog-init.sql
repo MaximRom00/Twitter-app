@@ -39,3 +39,14 @@ create table tweets
 );
 
 update tweets set updated_timestamp = created_timestamp where updated_timestamp IS NULL;
+
+create table subscriptions
+(
+    id       int not null auto_increment ,
+    follower_id int not null ,
+    following_id int not null ,
+    created_timestamp timestamp not null ,
+    PRIMARY KEY (`id`),
+    constraint follower_user_fk foreign key (follower_id) references user_accounts(id),
+    constraint folllowing_user_fk foreign key (following_id) references user_accounts(id)
+);
